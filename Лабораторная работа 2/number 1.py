@@ -15,6 +15,7 @@ def first_example(x, N):
 
 
 def second_example(x, N):
+    '''Тут должен быть коммент'''
     suma = 0
     for n in range(N+1):
         suma += ((-1)**n * x**n) / (factorial(n))
@@ -46,3 +47,17 @@ def fift_exemple(x, N):
         return 2*suma
     else:
         return 'Внимание, по условию задачи |x| <= 1'
+
+
+def eight_example(x, N):
+    suma = 0
+    for n in range(N+1):
+        suma += ( ((-1)**n) * x**(2*n) )/(factorial(n))
+
+
+print(
+    second_example(
+        x=int(input('x: ')),
+        N=int(input('n: '))
+    )
+)
