@@ -25,14 +25,14 @@ def get_adjacency_matrix(E, V, n):
     :return: Матрица смежности
     '''
 
-    M = []
-    cycle = False
-    island = False
-    friends = {}
-    connected_with_all = False
-    degrees_of_vertices = {}
-    max_degree = 0
-    one_degree = []
+    M = [] # Матрица смежности
+    cycle = False # Есть ли циклы
+    island = False # Есть ли островная вершина
+    friends = {} # Смежные вершины для каждой вершины
+    connected_with_all = False # Есть ли смежная со всеми вершина
+    degrees_of_vertices = {} # Степени для каждой вершины
+    max_degree = 0 # Максимальная степень вершины
+    one_degree = [] # Вершины со степенью 1
 
     for i in range(n):
         M.append([0] * n)
