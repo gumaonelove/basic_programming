@@ -12,6 +12,12 @@ stop = int(input('stop: '))
 count = int(input('count: '))
 
 our_list = get_list(start, stop, count)
+new_list = []
 
 print(our_list)
-print(set(our_list))
+
+for number in our_list:
+    if number not in new_list:
+        new_list.append(number)
+
+print(new_list)
