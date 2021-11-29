@@ -9,16 +9,16 @@ from functions import get_set
 
 start = int(input('start: '))
 stop = int(input('stop: '))
-count = int(input('step: '))
+count = int(input('count: '))
 
 our_list = get_set(start, stop, count)
 new_list_1, new_list_2 = [], []
 
-for i in our_list:
-    if i%2==0:
-        new_list_2.append(i)
+for i in range(count):
+    if i % 2 == 0:
+        new_list_2.append(our_list[i])
     else:
-        new_list_1.append(i)
+        new_list_1.append(our_list[i])
 
 print(our_list)
 print(new_list_2+new_list_1)
