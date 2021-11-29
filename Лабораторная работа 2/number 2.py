@@ -5,6 +5,7 @@ help_text = '''Задание 2. Пользователь вводит с кла
 г) символы с 3-го по 8-й.
 '''
 
+
 def main_script(string, variant):
     '''Коммент'''
     if variant == 'а':
@@ -18,6 +19,7 @@ def main_script(string, variant):
     else:
         return 'Выберите корректный вариант'
 
+
 def second_script(string):
     '''Коммент'''
     return [
@@ -27,7 +29,10 @@ def second_script(string):
         ("г:", string[2:8])
          ]
 
+
 print(help_text)
+
+
 '''
 print(
     main_script(
@@ -36,5 +41,9 @@ print(
     ),
 )
 '''
+_str = input('Фраза: ')
 
-print(*second_script(input('Фраза: ')), sep='\n')
+if len(_str) >= 10:
+    print(*second_script(_str), sep='\n')
+else:
+    print('Ошибка, любая фраза от 10 символов!')

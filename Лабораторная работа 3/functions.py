@@ -1,6 +1,17 @@
-import random
+from random import randint
 
-def get_list():
-    our_number = str(random.randint(10**20, 10**30))
-    our_list = [int(x) for x in our_number]
-    return our_list
+
+def get_set(start, step, count):
+    g_list = []
+    while len(g_list) != count:
+        g_list.append(randint(start, step))
+
+    return list(g_list)
+
+
+def get_set(start, step, count):
+    g_set = ()
+    while len(g_set) != count:
+        g_set.add(randint(start, step))
+
+    return list(g_set)
