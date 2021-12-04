@@ -1,3 +1,5 @@
+import re
+
 class File:
     '''Взаимодействие с файлами'''
 
@@ -15,13 +17,7 @@ class File:
 
 
 def only_words(text):
-    text = text.replace('–', '')
-    text = text.replace('-', '')
-    text = text.replace(',', '')
-    text = text.replace('.', '')
-    text = text.replace('(', '')
-    text = text.replace(')', '')
-
+    text = re.sub(r'[^\w\s]','',text)
     return text
 
 
