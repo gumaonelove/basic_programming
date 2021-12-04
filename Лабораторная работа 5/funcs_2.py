@@ -73,8 +73,8 @@ def __dijkstra(G, start):
 
 def __get_id_address(start_point, finish_point):
     addresses = get_list_address()
-    start_index = addresses.index(start_point)+1
-    finish_index = addresses.index(finish_point)+1
+    start_index = addresses.index(start_point)
+    finish_index = addresses.index(finish_point)
 
     return start_index, finish_index
 
@@ -86,19 +86,17 @@ def __get_path(start, finish):
     :param finish: финиш id
     :return: путь
     '''
-    start, finish = start-1, finish-1
     G = __get_graph()
     d = __dijkstra(G, start)
     n = len(G)
     path = [finish]
-    module = 0
+    f = finish
     while finish != start:
         for v in range(n):
             if d[v] == d[finish] - G[finish][v]:
                 path.append(v)
-                module += d[v]
                 finish = v
-    return path[::-1], module
+    return path[::-1], d[f]
 
 
 def get_beautiful_path(start_address, finish_address):
@@ -108,6 +106,5 @@ def get_beautiful_path(start_address, finish_address):
     beautiful = ''
     addresses = get_list_address()
     for point in path:
-        beautiful += addresses[point-1] + ' --> '
-
+        beautiful += addresses[point] + ' --> '
     return beautiful[:-5], module
