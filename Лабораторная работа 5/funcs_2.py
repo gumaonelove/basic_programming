@@ -48,3 +48,37 @@ def get_list_address():
         break
     return _list
 
+
+def __dijkstra(G, s):
+    '''
+    Алгоритм Дейкстреры
+    :param G: Взвешенный граф заданный матрицей смежности
+    :param s: Вершина старта
+    :return: Массив кротчайших расстояний от старта до указанной вершины
+    '''
+
+    n = len(G) # колво вершин графа
+    Q = [(0, s)] # очередь
+    inf = float('Inf') # бесконечность
+    d = [inf for _ in range(n)] # массив кратчайших расстояний
+    d[s] = 0
+
+    while len(Q):
+        (cost, u) = Q.pop()
+        u += 1
+        for v in range(1, n):
+            if d[v] > d[u] + G[u][v]:
+                d[v] = d[u] + G[u][v]
+                Q.append((d[v], v))
+    return d
+
+
+def get_path(f, G, s):
+    '''
+    Восстанавливаем кратчайший путь
+    :param f: до куда
+    :param G:
+    :param s:
+    :return:
+    '''
+    d = __dijkstra(G, s)
