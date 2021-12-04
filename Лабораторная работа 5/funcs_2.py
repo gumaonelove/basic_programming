@@ -11,14 +11,14 @@ def __read_file():
     return ws
 
 
-def get_graph():
+def __get_graph():
     '''
     :return: возвращаем неориентированный взвешенный граф
     '''
     ws = __read_file()
 
     inf = float('Inf')
-    _len = 0
+    _len = -1
     for row in ws.rows: _len += 1
 
     G = [[inf] * _len for _ in range(_len)]
@@ -26,9 +26,9 @@ def get_graph():
     i, j = 0, 0
     for row in ws.rows:
         for cell in row:
-            if cell.value:
-                G[i][j] = cell.value
-                G[j][i] = cell.value
+            if cell.value and i and j:
+                G[i-1][j-1] = cell.value
+                G[j-1][i-1] = cell.value
             j += 1
         i += 1
         j = 0
@@ -49,36 +49,68 @@ def get_list_address():
     return _list
 
 
-def __dijkstra(G, s):
+def __dijkstra(G, start):
     '''
     Алгоритм Дейкстреры
     :param G: Взвешенный граф заданный матрицей смежности
-    :param s: Вершина старта
+    :param start: Вершина старта
     :return: Массив кротчайших расстояний от старта до указанной вершины
     '''
 
     n = len(G) # колво вершин графа
-    Q = [(0, s)] # очередь
+    Q = [(0, start)] # очередь
     inf = float('Inf') # бесконечность
     d = [inf for _ in range(n)] # массив кратчайших расстояний
-    d[s] = 0
+    d[start] = 0
 
     while len(Q):
         (cost, u) = Q.pop()
-        u += 1
-        for v in range(1, n):
+        for v in range(n):
             if d[v] > d[u] + G[u][v]:
                 d[v] = d[u] + G[u][v]
                 Q.append((d[v], v))
     return d
 
 
-def get_path(f, G, s):
+def __get_id_address(start_point, finish_point):
+    addresses = get_list_address()
+    start_index = addresses.index(start_point)+1
+    finish_index = addresses.index(finish_point)+1
+
+    return start_index, finish_index
+
+
+def __get_path(start, finish):
     '''
     Восстанавливаем кратчайший путь
-    :param f: до куда
-    :param G:
-    :param s:
-    :return:
+    :param start: старт id
+    :param finish: финиш id
+    :return: путь
     '''
-    d = __dijkstra(G, s)
+    G = __get_graph()
+    d = __dijkstra(G, start)
+    n = len(G)
+    path = [finish]
+    module = 0
+    while finish != start:
+        for v in range(n):
+            if d[v] == d[finish] - G[finish][v]:
+                path.append(v)
+                module += d[v]
+                finish = v
+    return path[::-1], module
+
+
+def get_beautiful_path(start_address, finish_address):
+    ''''''
+    start, finish = __get_id_address(start_address, finish_address)
+    path, module = __get_path(start, finish)
+    beautiful = ''
+    addresses = get_list_address()
+    for point in path:
+        beautiful += addresses[point-1] + ' --> '
+
+    return beautiful[:-5], module
+
+
+print(__get_path(1, 2))

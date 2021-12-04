@@ -6,13 +6,15 @@
 Граф должен быть задан в табличной форме в виде матрицы смежности в файле.
 '''
 
-from funcs_2 import get_graph, get_list_address
-
-G = get_graph()
+from funcs_2 import get_list_address, get_beautiful_path
 
 addresses = get_list_address()
-print('Список доступных адреса:', addresses, sep='\n')
+print('Список доступных адреса:', addresses, '', sep='\n')
 
 start_address = input('Введите адрес старта: ')
 finish_address = input('Введите адрес финиша: ')
 
+beautiful, module = get_beautiful_path(start_address, finish_address)
+
+print("Кратчайший путь: ", beautiful)
+print('Кратчайшее расстояние: ', module)
