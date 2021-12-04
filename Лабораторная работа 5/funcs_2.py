@@ -56,7 +56,6 @@ def __dijkstra(G, start):
     :param start: Вершина старта
     :return: Массив кротчайших расстояний от старта до указанной вершины
     '''
-
     n = len(G) # колво вершин графа
     Q = [(0, start)] # очередь
     inf = float('Inf') # бесконечность
@@ -87,6 +86,7 @@ def __get_path(start, finish):
     :param finish: финиш id
     :return: путь
     '''
+    start, finish = start-1, finish-1
     G = __get_graph()
     d = __dijkstra(G, start)
     n = len(G)
@@ -111,6 +111,3 @@ def get_beautiful_path(start_address, finish_address):
         beautiful += addresses[point-1] + ' --> '
 
     return beautiful[:-5], module
-
-
-print(__get_path(1, 2))
