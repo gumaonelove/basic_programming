@@ -3,29 +3,16 @@
 местности по Вашему выбору с числом вершин не менее 15.
 Постройте с пользователем диалог таким образом, чтобы он мог запрашивать у программы информацию о кратчайшем расстоянии
 между двумя пунктами карты (вершинами графа), при этом получал на экране информацию о кратчайшем расстоянии и путь.
-Граф должен быть задан в табличной форме в виде матрицы смежности в файле. Внутренний формат файла можно выбрать по
-Вашему усмотрению (простой текстовый файл с разделителями-пробелами, файл формата csv, файл формата MS Excel и пр.).
+Граф должен быть задан в табличной форме в виде матрицы смежности в файле.
 '''
 
-from openpyexcel import load_workbook
+from funcs_2 import get_graph, get_list_address
 
-wb = load_workbook(filename='map.xlsx', read_only=True)
-ws = wb['Sheet1']
+G = get_graph()
 
-inf = float('Inf')
-_len = 0
-for row in ws.rows: _len += 1
-G = [[0] * _len for _ in range(_len)]
+addresses = get_list_address()
+print('Список доступных адреса:', addresses, sep='\n')
 
-i, j = 0, 0
-for row in ws.rows:
-    for cell in row:
-        if cell.value:
-            G[i][j] = cell.value
-            G[j][i] = cell.value
-        j += 1
-    i += 1
-    j = 0
-wb.close()
-print(*G, sep='\n')
-print(G[0])
+start_address = input('Введите адрес старта: ')
+finish_address = input('Введите адрес финиша: ')
+
