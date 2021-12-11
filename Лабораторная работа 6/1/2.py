@@ -4,8 +4,8 @@
 from math import cos
 from tkinter import Tk, Canvas, BOTH
 
-HEIGHT = 500
-WIDTH = 500
+HEIGHT = 100
+WIDTH = 100
 STEP = 0.2
 INTERVAL = 100
 

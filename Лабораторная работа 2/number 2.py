@@ -33,14 +33,6 @@ def second_script(string):
 print(help_text)
 
 
-'''
-print(
-    main_script(
-        string=input('Фраза: '),
-        variant=input('Вариант: ')
-    ),
-)
-'''
 _str = input('Фраза: ')
 
 if len(_str) >= 10:

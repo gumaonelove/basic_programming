@@ -20,3 +20,4 @@ area_1, area_2 = area(float(input('Введите первый радиус: '))
 print(f'Площадь 1 круга = {area_1}')
 print(f'Площадь второго круга = {area_2}')
 print(f'Площадь кольца = {ring(area_1, area_2)}')
+
